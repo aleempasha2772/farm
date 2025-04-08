@@ -53,8 +53,15 @@ public class ProductController {
     }
 
     @PutMapping("/quantity/{productId}")
-    public ResponseEntity<Product> updateProductStock(@PathVariable Long productId,@RequestParam Integer quantity){
+    public ResponseEntity<Product> updateProductStock(@PathVariable Long productId,@RequestParam Long quantity){
         return ResponseEntity.ok(productService.updateProductQuantity(productId,quantity));
+    }
+
+
+    @PutMapping("/reduce-quantity/{id}")
+    public ResponseEntity<Void> reduceQuantity(@PathVariable Long productId,@RequestParam Long quantity){
+        productService.reduceQuantity(productId,quantity);
+        return ResponseEntity.ok().body(null);
     }
 
 
@@ -63,6 +70,7 @@ public class ProductController {
    public ResponseEntity<Product> updateProductPrice(@PathVariable Long productId, @RequestParam int newPrice){
         return ResponseEntity.ok(productService.updateProductPrice(productId,newPrice));
     }
+
 
 
 

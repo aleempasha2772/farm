@@ -17,14 +17,14 @@ public class Product {
     private String name;
     private String description;
     private Integer price;
-    private Integer Quantity;
+    private Long Quantity;
     private Integer unit;
     private String image;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private ProductCategory category;
 
-    public Product(Integer id, int productId, String name, String description, Integer price, Integer quantity, Integer unit, String image, LocalDateTime createdAt, LocalDateTime updatedAt, ProductCategory category) {
+    public Product(Integer id, int productId, String name, String description, Integer price, Long quantity, Integer unit, String image, LocalDateTime createdAt, LocalDateTime updatedAt, ProductCategory category) {
         this.id = id;
         this.productId = productId;
         this.name = name;
@@ -99,11 +99,11 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getQuantity() {
+    public Long getQuantity() {
         return Quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Long quantity) {
         Quantity = quantity;
     }
 

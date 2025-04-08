@@ -51,12 +51,22 @@ public class ProductService {
         return product;
     }
 
-    public Product updateProductQuantity(Long id, Integer stock){
+    public Product updateProductQuantity(Long id, Long stock){
         Product product = getProductById(id);
         product.setQuantity(stock);
         product.setUpdatedAt(LocalDateTime.now());
         productRepository.save(product);
         return product;
+    }
+
+
+    public void reduceQuantity(Long id, Long quantity){
+        Product product = productRepository.findById(id).orElse(null);
+
+        if(product.getQuantity() != null && product.getQuantity() > quantity){
+            product.setQuantity(product.getQuantity() - quantity);
+            productRepository.save(product);
+        }
     }
 
 
