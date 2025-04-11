@@ -62,7 +62,6 @@ public class ProductService {
 
     public void reduceQuantity(Long id, Long quantity){
         Product product = productRepository.findById(id).orElse(null);
-
         if(product.getQuantity() != null && product.getQuantity() > quantity){
             product.setQuantity(product.getQuantity() - quantity);
             productRepository.save(product);
