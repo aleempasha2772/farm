@@ -3,19 +3,18 @@ package com.example.order_ms.Controller;
 
 import com.example.order_ms.Model.Order;
 import com.example.order_ms.Model.OrderResponse;
+import com.example.order_ms.external.DTO.ConsumerResponse;
 import com.example.order_ms.external.DTO.OrderRequest;
 import com.example.order_ms.external.DTO.ProductResponse;
 import com.example.order_ms.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Random;
 
-@Controller
+@RestController
 @RequestMapping("api/v1")
 public class OrderController {
 
@@ -48,5 +47,10 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAllDetails(id));
     }
 
+    @GetMapping("/get-consumer/{id}")
+    public ResponseEntity<ConsumerResponse> getConsumerById(@PathVariable Integer id){
+        System.out.println(orderService.getConsumerById(id));
+        return ResponseEntity.ok(orderService.getConsumerById(id));
+    }
 
 }

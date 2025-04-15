@@ -4,11 +4,12 @@ package com.example.order_ms.service;
 import com.example.order_ms.Model.Order;
 import com.example.order_ms.Model.OrderResponse;
 import com.example.order_ms.Repository.OrderRepository;
+import com.example.order_ms.external.DTO.ConsumerResponse;
 import com.example.order_ms.external.DTO.OrderRequest;
 import com.example.order_ms.external.DTO.ProductResponse;
+import com.example.order_ms.external.service.ConsumerService;
 import com.example.order_ms.external.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -23,6 +24,9 @@ public class OrderService {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ConsumerService consumerService;
 
 
     public List<Order> findAll(){
@@ -66,6 +70,11 @@ public class OrderService {
     public ProductResponse findProductById(Integer id){
         ProductResponse productResponse = productService.getProductById(Long.valueOf(id)).getBody();
         return productResponse;
+    }
+
+    public ConsumerResponse getConsumerById(Integer id){
+        ConsumerResponse consumerResponse = consumerService.getConsumerById(id).getBody();
+        return consumerResponse;
     }
 
     public OrderResponse getAllDetails(Integer id){
